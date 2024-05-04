@@ -4,6 +4,13 @@
 
 using namespace std;
 
+struct Proyecto{
+    string nombreProy;
+    string propietario;
+    string estadoProy;
+    string descripcion;
+
+};
 
 class Creador{
 
