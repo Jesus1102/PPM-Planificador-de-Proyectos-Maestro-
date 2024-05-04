@@ -31,6 +31,7 @@ class Creador{
 
     public:
     Proyecto pro;
+    Tarea task;
 
     void crearProyecto(){
 
@@ -50,8 +51,23 @@ class Creador{
 
     void crearTarea(){
 
-        cout << "";
+        cout << "Ingrese el nombre de la Tarea: " << endl;
+        cin >> task.nombreTarea;
 
+        cout << "Ingrese el estado de la Tarea: " << endl;
+        cin >> task.estadoTarea;
+
+        cout << "Ingrese la prioridad de la Tarea: " << endl;
+        cin >> task.prioridadTarea;
+
+        cout << "Ingrese el responsable de la Tarea: " << endl;
+        cin >> task.responsableTarea;
+
+        cout << "Ingrese la fecha limite de la Tarea: " << endl;
+        cin >> task.fechaLimiteTarea;
+
+        cout << "Ingrese el resumen de la Tarea: " << endl;
+        cin >> task.resumenTarea;
 
     }
 
