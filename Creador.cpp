@@ -13,8 +13,9 @@ class Creador{
     void crearProyecto(){
 
 
-        
+
     }
 
+    void crearTarea(){}
 
 };
