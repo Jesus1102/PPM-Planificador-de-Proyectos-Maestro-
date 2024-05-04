@@ -32,6 +32,8 @@ class Creador{
     public:
     Proyecto pro;
     Tarea task;
+    map <string, set<Tarea>> proyecGenerales;
+    
 
     void crearProyecto(){
 
@@ -70,5 +72,8 @@ class Creador{
         cin >> task.resumenTarea;
 
     }
+
+
+
 
 };
