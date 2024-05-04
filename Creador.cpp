@@ -1,21 +1,23 @@
 #include <iostream>
 #include <queue>
 #include <stack>
+#include <map>
+#include <set>
 
 using namespace std;
 
 struct Proyecto{
     string nombreProy;
-    string propietario;
+    string propietarioProy;
     string estadoProy;
-    string descripcion;
+    string descripcionProy;
 
 };
 
 class Creador{
 
     public:
-
+    Proyecto proyecto;
 
     void crearProyecto(){
 
@@ -23,6 +25,11 @@ class Creador{
 
     }
 
-    void crearTarea(){}
+    void crearTarea(){
+
+
+
+
+    }
 
 };
