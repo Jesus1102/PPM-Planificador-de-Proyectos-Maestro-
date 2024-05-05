@@ -73,6 +73,12 @@ class Creador{
 
     }
 
+    void agregarTareaProyecto(){
+
+        proyecGenerales[pro.nombreProy].insert(task);
+
+    }
+
 
 
 
