@@ -32,7 +32,8 @@ class Creador{
     public:
     Proyecto pro;
     Tarea task;
-    map <string, set<Tarea>> proyecGenerales;
+    set<Proyecto> proyecGenerales;
+    map <string, set<Tarea>> proyecTareas;
     
 
     void crearProyecto(){
@@ -48,6 +49,8 @@ class Creador{
 
         cout << "Ingrese la descripcion del Proyecto: " << endl;
         cin >> pro.descripcionProy;
+
+        proyecGenerales.insert(pro);
 
     }
 
@@ -75,7 +78,7 @@ class Creador{
 
     void agregarTareaProyecto(){
 
-        proyecGenerales[pro.nombreProy].insert(task);
+        proyecTareas[pro.nombreProy].insert(task);
 
     }
 
