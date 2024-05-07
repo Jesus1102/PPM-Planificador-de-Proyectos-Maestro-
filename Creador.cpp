@@ -33,6 +33,7 @@ class Creador{
     Proyecto pro;
     Tarea task;
     set<Proyecto> proyecGenerales;
+    set <Tarea> tareasGenerales;
     map <string, set<Tarea>> proyecTareas;
     
 
@@ -73,6 +74,8 @@ class Creador{
 
         cout << "Ingrese el resumen de la Tarea: " << endl;
         cin >> task.resumenTarea;
+
+        tareasGenerales.insert(task);
 
     }
 
