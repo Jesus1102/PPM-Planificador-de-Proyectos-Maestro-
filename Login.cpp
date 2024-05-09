@@ -1,7 +1,18 @@
 #include <iostream>
 #include <string>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
+
+// Función para generar un hash simple de una cadena
+string generarHash(const string& input){
+    int hash = 0;
+    for (char c : input) {
+        hash += c;
+    }
+    return to_string(hash);
+}
 
 struct Login {
     string nombreUsuario;
@@ -10,7 +21,19 @@ struct Login {
     string contraseña;
 
     void pedirDatos();
+    bool verificarUsuario();
 };
+
+bool Login::verificarUsuario() {
+    // Simulación de almacenamiento de usuarios
+    static vector<Login> usuarios = {{usuarioRegistrado, contraseñaRegistrada}};
+    for (const auto& l : usuarios) {
+        if (l.nombreUsuario == usuarioRegistrado && l.contraseña == contraseñaRegistrada) {
+            return true;
+        }
+    }
+    return false;
+}
 
 void Login::pedirDatos() {
     cout << "Por favor ingresar el correo que desea registrar en PPM: " << endl;
@@ -34,6 +57,13 @@ void Login::pedirDatos() {
 int main() {
     Login login;
     login.pedirDatos();
+
+    // Verificar si el usuario existe
+    if (login.verificarUsuario()) {
+        cout << "Inicio de sesión exitoso." << endl;
+    } else {
+        cout << "Error: Usuario o contraseña incorrectos." << endl;
+    }
 
     return 0;
 }
