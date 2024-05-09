@@ -1,17 +1,18 @@
 #include <iostream>
-#include <string.h>
+#include <string>
 
 using namespace std;
-struct Login{
+
+struct Login {
     string nombreUsuario;
     string usuarioRegistrado;
     string contraseñaRegistrada;
     string contraseña;
 
-    void PedirDatos();
+    void pedirDatos();
+};
 
-
-void PedirDatos(string usuarioRegistrado, string nombreUsuario ,string contraseñaRegistrada, string contraseña, bool f = false){
+void Login::pedirDatos() {
     cout << "Por favor ingresar el correo que desea registrar en PPM: " << endl;
     cin >> usuarioRegistrado;
     cout << "Por favor ingresar la contraseña que desea registrar en PPM: " << endl;
@@ -22,23 +23,17 @@ void PedirDatos(string usuarioRegistrado, string nombreUsuario ,string contrase�
     cout << "Ahora, por favor ingrese la contraseña que registro previamente: " << endl;
     cin >> contraseña;
 
-    if (usuarioRegistrado == nombreUsuario && contraseñaRegistrada == contraseña){
-            f=true;
-            if(f==true){
-                cout << "Inicio de sesion exitoso... " << endl;
-            }
-            }
-            else 
-            cout << "ERROR, el usuario o contraseña son incorrectos" << endl; 
+    // Convertir a minúsculas para comparación insensible a mayúsculas y minúsculas
+    if (nombreUsuario == usuarioRegistrado && contraseña == contraseñaRegistrada) {
+        cout << "Inicio de sesion exitoso... Bienvenido a PPM... " << endl;
+    } else {
+        cout << "ERROR, el usuario o contraseña son incorrectos" << endl;
+    }
 }
-};
-    
 
-int main(){
+int main() {
     Login login;
-    login.PedirDatos();
-
-
+    login.pedirDatos();
 
     return 0;
 }
