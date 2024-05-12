@@ -22,7 +22,13 @@ struct Login {
 
     void pedirDatos();
     bool verificarUsuario();
+    bool contieneAtSign(); // Función agregada para verificar la presencia de "@"
 };
+
+bool Login::contieneAtSign() {
+    usuarioRegistrado.find('@')!= string::npos; // Retorna true si encuentra "@", false en caso contrario
+    
+}
 
 bool Login::verificarUsuario() {
     // Simulación de almacenamiento de usuarios
@@ -58,11 +64,21 @@ int main() {
     Login login;
     login.pedirDatos();
 
+    // Verificar si el usuarioRegistrado contiene "@"
+    if (login.contieneAtSign()) {
+        cout << " " << endl;
+    } 
+    else {
+        cout << "El usuario registrado NO contiene '@'" << endl;
+    }
+
     // Verificar si el usuario existe
-    if (login.verificarUsuario()) {
-        cout << "Inicio de sesión exitoso." << endl;
-    } else {
-        cout << "Error: Usuario o contraseña incorrectos." << endl;
+    bool usuarioExiste = login.verificarUsuario();
+    if(usuarioExiste){
+    cout << "Inicio de sesión exitoso." << endl;
+    }   
+    else{
+    cout << "Error: Usuario o contraseña incorrectos." << endl;
     }
 
     return 0;
