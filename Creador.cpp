@@ -39,6 +39,8 @@ class Creador{
     set <Tarea> tareasGenerales;
     map <string, set<Tarea>> proyecTareas;
     int color1 [4] = {4,12,14,10};
+    vector <string> estado = {"Pendiente", "En Proceso", "Terminada"};
+    
 
     
 
@@ -65,8 +67,7 @@ class Creador{
         cout << "Ingrese el nombre de la Tarea: " << endl;
         cin >> task.nombreTarea;
 
-        cout << "Ingrese el estado de la Tarea: " << endl;
-        cin >> task.estadoTarea;
+        estadoTarea();
 
         prioTarea();
 
@@ -105,13 +106,46 @@ class Creador{
 
     }
 
-    void agregarTareaProyecto(){
+    void estadoTarea(){
 
-        proyecTareas[pro.nombreProy].insert(task);
+        int opcion;
+        string opEstado;
+
+        while (true){
+
+            cout << "1. para crear un estado " << endl << "2. para asignar un estado" << endl; 
+            cin >> opcion;
+
+            if(opcion == 1){
+                    
+                cout << "Los estados disponibles son: " << endl;
+                for(int i = 0; i < estado.size(); i ++){
+
+                    cout << to_string(i+1) << estado[i] << endl;
+
+                }
+                cout << "Ingrese el nuevo estado" << endl;
+                cin >> opEstado;
+
+                estado.push_back(opEstado); 
+
+            }
+            if(opcion == 2){
+                int opcion1;
+                cout << "Los estados disponibles son: " << endl;
+                for(int i = 0; i < estado.size(); i ++){
+
+                    cout << to_string(i+1) << estado[i] << endl;
+
+                }
+                cout << "Ingrese el estado de la tarea" << endl;
+                cin >> opcion1;
+                task.estadoTarea = estado[opcion1-1];
+                break;
+            }
+
+        }
 
     }
-
-
-
 
 };
