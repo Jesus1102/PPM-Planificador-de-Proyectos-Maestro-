@@ -74,8 +74,7 @@ class Creador{
         cout << "Ingrese el responsable de la Tarea: " << endl;
         cin >> task.responsableTarea;
 
-        cout << "Ingrese la fecha limite de la Tarea: " << endl;
-        cin >> task.fechaLimiteTarea;
+        limiteFecha();
 
         cout << "Ingrese el resumen de la Tarea: " << endl;
         cin >> task.resumenTarea;
@@ -148,7 +147,7 @@ class Creador{
 
     }
 
-    void anadirFechas(){
+    void limiteFecha(){
 
         int dia1, mes1, anio1;
 
