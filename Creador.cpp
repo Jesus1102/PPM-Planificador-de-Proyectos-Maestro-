@@ -148,4 +148,57 @@ class Creador{
 
     }
 
+    void anadirFechas(){
+
+        int dia1, mes1, anio1;
+
+        while(true){
+
+            cout << "A continuacion ingresara la fecha limite de la tarea " << endl;
+            cout << "Ingrese el dia" << endl;
+            cin >> dia1;
+
+            cout << "Ingrese el mes" << endl;
+            cin >> mes1;
+
+            cout << "Ingrese el anio" << endl;
+            cin >> anio1;
+
+            if(fechaValida(dia1, mes1, anio1)){
+
+                string fecha = to_string(dia1) + "/" + to_string(mes1) + "/" + to_string(anio1);
+                task.fechaLimiteTarea = fecha;
+
+            }
+            else{
+                
+                cout << "Fecha no valida" << endl;
+                cout << "Ingrese otra fecha" << endl;
+            }
+
+        }
+
+    }
+
+
+    bool fechaValida(int dia, int mes, int anio){
+        
+        if (dia < 1 || dia > 31)
+        {
+            return false;
+        }
+        
+        if (mes < 1 || mes > 12)
+        {
+            return false;
+        }
+        
+        if (anio < 2023)
+        {
+            return false;
+        }
+        
+        return true;
+    }
+
 };
