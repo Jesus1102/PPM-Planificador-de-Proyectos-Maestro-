@@ -28,14 +28,12 @@ struct Tarea{
 
 }; 
 
-
-
 class Creador{
 
     public:
     Proyecto pro;
     Tarea task;
-    set<Proyecto> proyecGenerales;
+    set <Proyecto> proyecGenerales;
     set <Tarea> tareasGenerales;
     map <string, set<Tarea>> proyecTareas;
     int color1 [4] = {4,12,14,10};
