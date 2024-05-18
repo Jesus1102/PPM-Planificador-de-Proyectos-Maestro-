@@ -10,18 +10,21 @@
 class Mostrador{
 
     Creador c;
-
+    string buscaProyec;
     public:
 
 
     void mostrarProyectos(){
+           
         if(c.proyecGenerales.empty()){
+            
             cout << "No hay proyectos registrados" << endl;
             cout << "Por favor, cree un proyecto" << endl;
 
         }
+
         else{
-            
+
             for(auto i = c.proyecGenerales.begin(); i != c.proyecGenerales.end(); i++){
 
                 cout << "Nombre del Proyecto: " << i->nombreProy << endl;
@@ -30,8 +33,8 @@ class Mostrador{
                 cout << "Descripcion del Proyecto: " << i->descripcionProy << endl;
 
             }
-
         }
+        
     }
 
     

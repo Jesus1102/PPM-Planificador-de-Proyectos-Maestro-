@@ -10,6 +10,7 @@
 using namespace std;
 
 struct Proyecto{
+    
     string nombreProy;
     string propietarioProy;
     string estadoProy;
@@ -50,8 +51,7 @@ class Creador{
         cout << "Ingrese el propietario del Proytecto: " << endl;
         cin >> pro.propietarioProy;
 
-        cout << "Ingrese el estado del Proyecto:" << endl;
-        cin >> pro.estadoProy;
+        pro.estadoProy = definirEstado();;
 
         cout << "Ingrese la descripcion del Proyecto: " << endl;
         cin >> pro.descripcionProy;
@@ -65,7 +65,7 @@ class Creador{
         cout << "Ingrese el nombre de la Tarea: " << endl;
         cin >> task.nombreTarea;
 
-        estadoTarea();
+        task.estadoTarea = definirEstado();
 
         prioTarea();
 
@@ -74,7 +74,7 @@ class Creador{
 
         limiteFecha();
 
-        cout << "Ingrese el resumen de la Tarea: " << endl;
+        cout << "Ingrese el resumen(comentarios) de la Tarea: " << endl;
         cin >> task.resumenTarea;
 
         tareasGenerales.insert(task);
@@ -103,7 +103,7 @@ class Creador{
 
     }
 
-    void estadoTarea(){
+    string definirEstado(){
 
         int opcion;
         string opEstado;
@@ -135,10 +135,10 @@ class Creador{
                     cout << to_string(i+1) << estado[i] << endl;
 
                 }
-                cout << "Ingrese el estado de la tarea" << endl;
+                cout << "Ingrese el estado de la tarea/proyecto" << endl;
                 cin >> opcion1;
-                task.estadoTarea = estado[opcion1-1];
-                break;
+                return estado[opcion1-1];
+                
             }
 
         }
