@@ -39,17 +39,20 @@ class Mostrador{
         
     }
     
-    void mostrarTareasProyectos(string nombreProyecto){
+    void mostrarTareasProyectos(){
+
+        cout << "Ingrese el nombre del proyecto al que desea ver las tareas: ";
+        string nombreProyecto;
+        cin >> nombreProyecto;
 
         auto itBuscar = t.proyectosTareas.find(nombreProyecto);
 
         if(itBuscar == t.proyectosTareas.end()){
 
-            cout << "No hay tareas asignadas a este proyecto" << endl;
-            cout << "Por favor, asigne tareas a este proyecto" << endl;
+            cout << "No existe este proyecto" << endl;
+            cout << "Por favor, cree un proyecto" << endl;
 
         }
-
         else{
 
             for(auto i = t.proyectosTareas[nombreProyecto].begin(); i != t.proyectosTareas[nombreProyecto].end(); i++){
