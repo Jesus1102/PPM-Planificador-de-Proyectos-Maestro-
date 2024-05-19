@@ -5,11 +5,13 @@
 #include <set>
 #include <windows.h>
 #include "Creador.cpp"
+#include "AsignarTareasAProyectos.cpp"
 
 
 class Mostrador{
 
     Creador c;
+    Tarea1 t;
     string buscaProyec;
     public:
 
@@ -36,12 +38,13 @@ class Mostrador{
         }
         
     }
-
     
+    void mostrarTareasProyectos(string nombreProyecto){
+
+        auto itBuscar = t.proyectosTareas.find(nombreProyecto);
 
 
 
-
-
+    }
 
 };

@@ -48,6 +48,7 @@ class Creador{
         cout << "Ingrese el nombre del Proyecto: " << endl;
         cin >> pro.nombreProy;
 
+
         cout << "Ingrese el propietario del Proytecto: " << endl;
         cin >> pro.propietarioProy;
 
