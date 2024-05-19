@@ -1,13 +1,13 @@
 #include <iostream>
 #include <string>
 #include <map>
-#include <vector>
+#include <set>
 
 using namespace std;
 
 class Tarea {
 public:
-    vector<string> responsables;
+    set<string> responsables; 
     string tarea;
 
     Tarea() {};
@@ -26,7 +26,7 @@ bool pedirYValidarDatos(map<string, Tarea>& tareas) {
         cout << "1. Crear nueva tarea\n2. Agregar responsables a tarea\n" << endl;
         cin >> desicionUsuario;
 
-        cin.ignore(); 
+        cin.ignore();
 
         if (desicionUsuario == 1) {
             cout << "Escribe el nombre de la tarea que desea crear: " << endl;
@@ -48,9 +48,10 @@ bool pedirYValidarDatos(map<string, Tarea>& tareas) {
                 cin >> nuevoResponsable;
 
                 
-                tareas[nuevaTarea].responsables.push_back(nuevoResponsable);
+                set<string> responsablesSet = {nuevoResponsable};
+                tareas[nuevaTarea].responsables.insert(responsablesSet.begin(), responsablesSet.end());
 
-                
+                // Pregunta si desea agregar más responsables
                 cout << "¿Desea agregar más responsables a la tarea? (1. Sí, 2. No): ";
                 cin >> opcion;
                 cin.ignore(); 
@@ -69,7 +70,7 @@ bool pedirYValidarDatos(map<string, Tarea>& tareas) {
 }
 
 int main() {
-    map<string, Tarea> tareas; 
+    map<string, Tarea> tareas; // Crear un mapa para almacenar las tareas y sus responsables
     bool continuar = true;
     while (continuar) {
         continuar = pedirYValidarDatos(tareas);
