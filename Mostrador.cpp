@@ -43,7 +43,26 @@ class Mostrador{
 
         auto itBuscar = t.proyectosTareas.find(nombreProyecto);
 
+        if(itBuscar == t.proyectosTareas.end()){
 
+            cout << "No hay tareas asignadas a este proyecto" << endl;
+            cout << "Por favor, asigne tareas a este proyecto" << endl;
+
+        }
+
+        else{
+
+            for(auto i = t.proyectosTareas[nombreProyecto].begin(); i != t.proyectosTareas[nombreProyecto].end(); i++){
+
+                cout << "Nombre de la tarea: " << i->nombreTarea << endl;
+                cout << "Descripcion de la tarea: " << i->descripcion << endl;
+                cout << "Estado de la tarea: " << i->estadoTarea << endl;
+                cout << "Prioridad de la tarea: " << i->prioridadTarea << endl;
+                cout << "Responsable de la tarea: " << i->responsableTarea << endl;
+                cout << "Fecha limite de la tarea: " << i->fechaLimiteTarea << endl;
+
+            }
+        }
 
     }
 
