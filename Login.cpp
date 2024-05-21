@@ -6,33 +6,28 @@
 
 using namespace std;
 
-// Función para generar un hash simple de una cadena
-string generarHash(const string& input){
-    int hash = 0;
-    for (char c : input) {
-        hash += c;
-    }
-    return to_string(hash);
-}
-
-struct Login {
+class Login {
+public:
     string nombreUsuario;
     string usuarioRegistrado;
     string contraseñaRegistrada;
     string contraseña;
+    int opcion;
+    string usuarioLogueado;
 
     void pedirDatos();
     bool verificarUsuario();
     bool contieneAtSign(); 
     void conformarContraseña();
 
+private:
+    static vector<Login> usuarios;
+
     bool Login::contieneAtSign() {
-        return usuarioRegistrado.find('@')!= string::npos; 
+        return usuarioRegistrado.find('@')!= string::npos;
     }
 
     bool Login::verificarUsuario() {
-        
-        static vector<Login> usuarios = {{nombreUsuario, contraseñaRegistrada}};
         for (const auto& l : usuarios) {
             if (l.nombreUsuario == usuarioRegistrado && l.contraseña == contraseña) {
                 return true;
@@ -42,36 +37,51 @@ struct Login {
     }
 
     void Login::pedirDatos() {
-        cout << "Por favor ingresar el correo que desea registrar en PPM: " << endl;
-        cin >> usuarioRegistrado;
-        cout << "Por favor ingresar la contraseña que desea registrar en PPM: " << endl;
-        cin >> contraseñaRegistrada;
-
-        cout << "Ahora, por favor ingrese el correo que registro previamente: " << endl;
-        cin >> nombreUsuario;
-        cout << "Ahora, por favor ingrese la contraseña que registro previamente: " << endl;
-        cin >> contraseña;
-
-        
-        if (nombreUsuario == usuarioRegistrado && contraseña == contraseñaRegistrada) {
-            cout << "Inicio de sesion exitoso... Bienvenido a PPM... " << endl;
-        } else {
-            cout << "ERROR, el usuario o contraseña son incorrectos" << endl;
+        cout << "Te damos la bienvenida a PPM, ahora digita el numero de la opcion que desees ejecutar: " << endl;
+        cout << "1. Loguearse." << endl;
+        cout << "2. Registrarse." << endl;
+        cin >> opcion;
+        if (opcion == 1) {
+            cout << "Ingrese su correo: " << endl;
+            cin >> usuarioLogueado;
+            cout << "El correo no ha sido encontrado, por favor registrese a continuacion. " << endl;
+            cout << "Por favor ingresar el correo que desea registrar en PPM: " << endl;
+            cin >> usuarioRegistrado;
+            cout << "Por favor ingresar la contraseña que desea registrar en PPM: " << endl;
+            cin >> contraseñaRegistrada;
+        } else if (opcion == 2) {
+            cout << "Por favor ingresar el correo que desea registrar en PPM: " << endl;
+            cin >> usuarioRegistrado;
+            cout << "Por favor ingresar la contraseña que desea registrar en PPM: " << endl;
+            cin >> contraseñaRegistrada;
+            conformarContraseña();
+            usuarios.push_back(*this); 
+            cout << "Felicidades, se registro su correo y contraseña correctamente" << endl;
+        }
+        if (opcion == 1) {
+            for (const auto& l : usuarios) {
+                if (l.nombreUsuario == usuarioRegistrado && l.contraseña == contraseñaRegistrada) {
+                    cout << "Inicio de sesion exitoso... Bienvenido a PPM... " << endl;
+                    break;
+                }
+            }
         }
     }
 
     void Login::conformarContraseña() {
-        if(strlen(contraseñaRegistrada.c_str()) < 4) {
+        if (contraseñaRegistrada.size() < 4) {
             cout << "ERROR: La contraseña debe tener mínimo 4 caracteres." << endl;
-            return; 
+            return;
         }
     }
 };
 
+vector<Login> Login::usuarios;
+
 int main() {
     Login login;
+    login.usuarios.clear(); // Limpiar el vector de usuarios
     login.pedirDatos();
-    login.conformarContraseña();
 
     // Verificar si el usuarioRegistrado contiene "@"
     if (login.contieneAtSign()) {
