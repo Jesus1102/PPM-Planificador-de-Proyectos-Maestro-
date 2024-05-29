@@ -9,7 +9,7 @@
 
 using namespace std;
 
-struct Proyecto{
+struct Proyecto1{
     
     string nombreProy;
     string propietarioProy;
@@ -32,9 +32,9 @@ struct Tarea1{
 class Creador{
 
     public:
-    Proyecto pro;
+    Proyecto1 pro;
     Tarea1 task;
-    set <Proyecto> proyecGenerales;
+    set <Proyecto1> proyecGenerales;
     set <Tarea1> tareasGenerales;
     map <string, set<Tarea1>> proyecTareas;
     int color1 [4] = {4,12,14,10};
