@@ -171,6 +171,13 @@ void mostrarTareas(const vector<Tarea>& tareas) {
     }
 }
 
+void mostrarResponsables(const set<string>& responsables) {
+    cout << "Los responsables ordenados alfabeticamente son:\n";
+    for (const auto& responsable : responsables) {
+        cout << responsable << endl;
+    }
+}
+
 /*
 int main(){
     int opcion;
@@ -193,6 +200,13 @@ int main(){
             bool continuar = true;
             while (continuar) {
                 continuar = ValidacionDeDatos(tareas);
+                
+                set<string> allResponsables;
+            for (const auto& tarea : tareas) {
+            allResponsables.insert(tarea.second.responsables.begin(), tarea.second.responsables.end());
+        }
+        mostrarResponsables(allResponsables);
+    }
             }
             break;
 
