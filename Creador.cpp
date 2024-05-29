@@ -60,7 +60,12 @@ void Creador::prioTarea() {
 }
 
 bool Creador::validarVacio() {
-    return !tareasGenerales.empty();
+    if(tareasGenerales.empty()){
+        return false;
+    }
+    else {
+        return true;
+    }
 }
 
 string Creador::definirEstado() {
