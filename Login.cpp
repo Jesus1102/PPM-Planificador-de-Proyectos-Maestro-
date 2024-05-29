@@ -28,8 +28,6 @@ class Login{
             correos.push_back(correo);
             contrasenas.push_back(contrasena);
         }
-       
-
     }
 
     void iniciarSesion(){
@@ -55,9 +53,6 @@ class Login{
             cout << "Correo o contrasena incorrectos. Inténtalo de nuevo." << endl;
 
         }
-
-        
-        
 
     }
 

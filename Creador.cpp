@@ -40,7 +40,6 @@ class Creador{
     Tarea1 task;
     set <Proyecto1> proyecGenerales;
     set <Tarea1> tareasGenerales;
-    map <string, set<Tarea1>> proyecTareas;
     int color1 [4] = {4,12,14,10};
     vector <string> estado = {"Pendiente", "En Proceso", "Terminada"};
     
