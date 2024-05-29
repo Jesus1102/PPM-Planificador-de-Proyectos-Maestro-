@@ -5,13 +5,13 @@
 #include <set>
 #include <windows.h>
 #include "Creador.cpp"
-#include "AsignarTareasAProyectos.cpp"
+#include "Union.cpp"
 
 
 class Mostrador{
 
     Creador c;
-    Tarea1 t;
+    Tarea t;
     string buscaProyec;
     public:
 
@@ -39,11 +39,8 @@ class Mostrador{
         
     }
     
-    void mostrarTareasProyectos(){
+    void mostrarTareasProyectos(string nombreProyecto){
 
-        cout << "Ingrese el nombre del proyecto al que desea ver las tareas: ";
-        string nombreProyecto;
-        cin >> nombreProyecto;
 
         auto itBuscar = t.proyectosTareas.find(nombreProyecto);
 
@@ -68,5 +65,29 @@ class Mostrador{
         }
 
     }
+
+    string proyectosDisponibles(){
+
+        if(c.proyecGenerales.empty()){
+            
+            cout << "No hay proyectos registrados" << endl;
+            cout << "Por favor, cree un proyecto" << endl;
+
+        }
+        else{
+            int j = 1;
+            for(auto i = c.proyecGenerales.begin(); i != c.proyecGenerales.end(); i++){
+                cout << j << "Nombre del proyecto: " << i->nombreProy << endl;
+                j++;
+            }
+        }
+        cout << "Ingrese el nombre del proyecto que desea ver, de los proyectos anteriormente mostrados: ";
+        string nombreProyecto;
+        cin >> nombreProyecto;
+
+        return nombreProyecto;
+    }
+
+
 
 };
