@@ -20,7 +20,7 @@ bool  Login::registrarUsuario(){
         correos.push_back(correo);
         contrasenas.push_back(contrasena);
         cout << "Usuario registrado" << endl;
-        return true;
+        return true;    
     }
 
     return false;
@@ -47,9 +47,8 @@ bool Login::iniciarSesion(){
             }
         }
         cout << "Correo o contrasena incorrectos. Inténtalo de nuevo." << endl;
-s
     }
-    retunr false;
+    return false;
 
 }
 
@@ -59,4 +58,5 @@ bool Login::validarCorreo(string correo){
         cout << "El correo debe contener un '@'. Inténtalo de nuevo." << endl;
         return false;
     }
+    return true;
 }

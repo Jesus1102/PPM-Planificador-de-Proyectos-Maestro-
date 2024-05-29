@@ -26,24 +26,7 @@ int main(){
 
         if(opcion == 1){
             if(l.iniciarSesion() == true){
-                cout << "Sesión iniciada" << endl;
-                while(true){
-                    cout << "1. Crear " << endl << "2. Mostrar" << endl << "3. Asignar" << endl << "4. Salir" << endl;
-                    cin >> opcion;
-                    if(opcion == 1){
-                        m1.menuCrear();
-                    }
-                    if(opcion == 2){
-                        m1.menuMostrar();
-                    }
-                    if(opcion == 3){
-                        m1.menuAsignar();
-                    }
-                    if(opcion == 4){
-                        cout << "Gracias por usar el sistema de gestión de proyectos" << endl;
-                        return 0;
-                    }
-                }
+                m1.menuPrincipal();
             }
             break;
         }
