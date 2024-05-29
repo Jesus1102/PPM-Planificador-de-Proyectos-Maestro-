@@ -24,22 +24,12 @@ public:
     static void limpiarUsuarios() {
         usuarios.clear();
     }
+    
 };
 
 vector<Login> Login::usuarios;
 
-bool Login::contieneAtSign() {
-    return usuarioRegistrado.find('@') != string::npos;
-}
-
-bool Login::verificarUsuario() {
-    for (const auto& l : usuarios) {
-        if (l.usuarioRegistrado == usuarioRegistrado && l.contraseñaRegistrada == contraseña) {
-            return true;
-        }
-    }
-    return false;
-}
+Login login;
 
 void Login::pedirDatos() {
     cout << "Te damos la bienvenida a PPM, ahora digita el numero de la opcion que desees ejecutar: " << endl;
@@ -73,20 +63,8 @@ void Login::pedirDatos() {
     }
 }
 
-void Login::conformarContraseña() {
-    if (contraseñaRegistrada.size() < 4) {
-        cout << "ERROR: La contraseña debe tener mínimo 4 caracteres." << endl;
-        return;
-    }
-}
-
-int main() {
-    // Limpiar el vector de usuarios
-    Login::limpiarUsuarios();
-    
-    // Solicitar datos al usuario
-    Login login;
-    login.pedirDatos();
+bool Login::contieneAtSign() {
+    return usuarioRegistrado.find('@') != string::npos;
 
     // Verificar si el usuarioRegistrado contiene "@"
     if (login.contieneAtSign()) {
@@ -94,7 +72,14 @@ int main() {
     } else {
         cout << "El usuario registrado NO contiene '@'" << endl;
     }
+}
 
+bool Login::verificarUsuario() {
+    for (const auto& l : usuarios) {
+        if (l.usuarioRegistrado == nombreUsuario && l.contraseñaRegistrada == contraseña) {
+            return true;
+        }
+    }
     // Verificar si el usuario existe y si el inicio de sesión fue exitoso
     bool usuarioExiste = login.verificarUsuario();
     if (usuarioExiste) {
@@ -103,4 +88,23 @@ int main() {
         cout << "Error: Usuario o contraseña incorrectos." << endl;
     }
     return 0;
+    return false;
 }
+
+void Login::conformarContraseña() {
+    if (contraseñaRegistrada.size() < 4) {
+        cout << "ERROR: La contraseña debe tener mínimo 4 caracteres." << endl;
+        return;
+    }
+}
+/*
+int main() {
+    // Limpiar el vector de usuarios
+    Login::limpiarUsuarios();
+    
+    // Solicitar datos al usuario
+    Login login;
+    login.pedirDatos();
+
+}
+*/
