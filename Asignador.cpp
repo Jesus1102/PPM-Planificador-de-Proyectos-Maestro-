@@ -33,8 +33,10 @@ class Asignador{
         cout << "Ingrese el nombre de la tarea: " << endl;
         cin >> nombreTareaBusqueda;
         if(buscarTarea(nombreTareaBusqueda) == true){
-            cout << "Ingrese el nombre del responsable: " << endl;
-            cin >> c.task.responsableTarea;
+            cout << "Ingrese el nombre del para agregar un responsable: "<< endl;
+            string responsable;
+            cin >> responsable;
+            c.task.responsableTarea.insert(responsable);
         }
         else{
             cout << "No existe esta tarea" << endl;

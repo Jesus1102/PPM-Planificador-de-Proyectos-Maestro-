@@ -28,7 +28,10 @@ void Creador::crearTarea() {
     prioTarea();
 
     cout << "Ingrese el responsable de la Tarea: " << endl;
-    cin >> task.responsableTarea;
+    string responsable;
+    cin >> responsable
+
+    task.responsableTarea.insert(responsable);
 
     limiteFecha();
 

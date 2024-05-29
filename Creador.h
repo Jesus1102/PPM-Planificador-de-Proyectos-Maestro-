@@ -23,7 +23,7 @@ struct Tarea1 {
     string nombreTarea;
     string estadoTarea;
     string prioridadTarea;
-    string responsableTarea;
+    set <string> responsableTarea;
     string fechaLimiteTarea;
     string resumenTarea;
 
