@@ -1,4 +1,5 @@
 #include "Creador.h"
+#include "colors.h"
 
 void Creador::crearProyecto() {
     cout << "Ingrese el nombre del Proyecto: " << endl;
@@ -41,10 +42,13 @@ void Creador::crearTarea() {
 void Creador::prioTarea() {
     string prioridad[4] = {"Urgente", "Alta", "Media", "Baja"};
     int opc;
+    
 
-    for (int i = 0; i < 4; i++) {
-        cout << to_string(i + 1) << ". " << prioridad[i] << endl;
-    }
+    cout << "Las prioridades disponibles son: " << endl;
+    cout << RED << "1. Urgente" << endl;
+    cout << ORANGE << "2. Alta" << endl;
+    cout << YELLOW << "3. Media" << endl;
+    cout << GREEN << "4. Baja" << endl;
 
     cout << "Ingrese la prioridad de la tarea: " << endl;
     cin >> opc;
