@@ -56,7 +56,10 @@ class Mostrador{
                 cout << "Nombre de la tarea: " << i->nombreTarea << endl;
                 cout << "Estado de la tarea: " << i->estadoTarea << endl;
                 cout << "Prioridad de la tarea: " << i->prioridadTarea << endl;
-                cout << "Responsable de la tarea: " << i->responsableTarea << endl;
+                cout << "Responsable de la tarea: " << endl;
+                for(const auto& j : i->responsableTarea){
+                    cout << j << endl;
+                }
                 cout << "Fecha limite de la tarea: " << i->fechaLimiteTarea << endl;
                 cout << "Resumen de la tarea: " << i->resumenTarea << endl;
 
@@ -85,6 +88,32 @@ class Mostrador{
         cin >> nombreProyecto;
 
         return nombreProyecto;
+    }
+
+    void mostrarResponsablesTarea(){
+
+        cout << "Ingrese el nombre de la tarea: " << endl;
+        string nombreTareaBusqueda;
+
+        cin >> nombreTareaBusqueda;
+
+        if (a.buscarTarea(nombreTareaBusqueda) == true){
+            cout << "Responsables de la tarea: " << endl;
+            for (const auto& tarea : c.tareasGenerales) {
+
+                for(const auto& j : tarea.responsableTarea){
+                    cout << j << endl;
+                }
+                
+            }
+        }
+        else{
+            cout << "No existe esta tarea" << endl;
+            cout << "Por favor, cree una tarea" << endl;
+        }
+        
+        
+
     }
 
 
