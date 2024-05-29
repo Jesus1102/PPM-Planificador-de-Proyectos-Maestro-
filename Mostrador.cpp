@@ -69,4 +69,27 @@ class Mostrador{
 
     }
 
+    string proyectosDisponibles(){
+
+        if(c.proyecGenerales.empty()){
+            
+            cout << "No hay proyectos registrados" << endl;
+            cout << "Por favor, cree un proyecto" << endl;
+
+        }
+        else{
+            int i = 1;
+            for(auto& ite : c.proyecGenerales){
+                cout << i <<"Nombre del proyecto: " << ite->nombreProy << endl;
+            }
+        }
+        cout << "Ingrese el nombre del proyecto que desea ver, de los proyectos anteriormente mostrados: ";
+        string nombreProyecto;
+        cin >> nombreProyecto;
+
+        return nombreProyecto;
+    }
+
+
+
 };
