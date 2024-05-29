@@ -29,7 +29,7 @@ public:
 
     Notas(){};
 
-    void Nota(string proyecto)
+    void crearNota(string proyecto)
     {
         while (true)
         {
@@ -86,6 +86,7 @@ public:
                     cout << "Nota: " << almacenarNotas[i].nota << endl;
                     cout << "Reaccion: " << reaccion << endl;
                     cout << "----------------------" << endl;
+                    break;
                 }
             }
         }
