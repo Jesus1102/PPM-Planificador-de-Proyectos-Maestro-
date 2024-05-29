@@ -29,11 +29,10 @@ public:
 
     Notas(){};
 
-    void anadirNota(string proyecto)
+    void Nota(string proyecto)
     {
         while (true)
         {
-
             nota.nombreProyecto = proyecto;
             cout << "Ingresa tu nombre: " << endl;
             cin >> nota.nombreResponsable;
@@ -54,7 +53,8 @@ public:
 
     void mostrarNotas()
     {
-        for (int i = 0; i < almacenarNotas.size(); i++)
+        int size = almacenarNotas.size();
+        for (int i = 0; i < size; i++)
         {
             cout << "Proyecto: " << almacenarNotas[i].nombreProyecto << endl;
             cout << "Responsable: " << almacenarNotas[i].nombreResponsable << endl;
@@ -65,7 +65,7 @@ public:
         }
     }
 
-    void reaccionarNota(string proyecto)
+    void reaccionarNota()
     {
         string nombreProyecto;
         string reaccion;
