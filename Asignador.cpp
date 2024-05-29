@@ -4,21 +4,26 @@
 #include <map>
 #include <set>
 #include "Creador.cpp"
-#include "Union.cpp"
 #include "Login.cpp"
-#include "Mostrador.cpp"
+
 
 class Asignador{
     
     Creador c;
-    Mostrador m;
     public:
     map <string, set<Tarea1>> proyectosTareas;
 
     void asignarTarea(string nombreProyecto){
 
-        Tarea1 tarea = c.crearTarea();
-        proyectosTareas[nombreProyecto].insert(tarea);
+        if(c.validarVacio() == true){
+            Tarea1 ultimaTarea = c.tareasGenerales.back();
+            proyectosTareas[nombreProyecto].insert( ultimaTarea);
+
+        }
+        else{
+            cout << "No hay tareas registradas" << endl;
+            cout << "Por favor, cree una tarea" << endl;
+        }
 
     }
 

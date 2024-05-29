@@ -60,7 +60,7 @@ class Login{
         // Validar que el nombre de usuario contenga un '@'
         if (correo.find('@') == string::npos) {
             cout << "El correo debe contener un '@'. Inténtalo de nuevo." << endl;
-            return;
+            return false;
         }
     }
     

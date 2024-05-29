@@ -4,13 +4,13 @@
 #include <map>
 #include <set>
 #include "Creador.cpp"
-#include "Union.cpp"
+#include "Asignador.cpp"
 
 
 class Mostrador{
 
     Creador c;
-    Tarea t;
+    Asignador a;
     string buscaProyec;
     public:
 
@@ -41,9 +41,9 @@ class Mostrador{
     void mostrarTareasProyectos(string nombreProyecto){
 
 
-        auto itBuscar = t.proyectosTareas.find(nombreProyecto);
+        auto itBuscar = a.proyectosTareas.find(nombreProyecto);
 
-        if(itBuscar == t.proyectosTareas.end()){
+        if(itBuscar == a.proyectosTareas.end()){
 
             cout << "No existe este proyecto" << endl;
             cout << "Por favor, cree un proyecto" << endl;
@@ -51,14 +51,14 @@ class Mostrador{
         }
         else{
 
-            for(auto i = t.proyectosTareas[nombreProyecto].begin(); i != t.proyectosTareas[nombreProyecto].end(); i++){
+            for(auto i = a.proyectosTareas[nombreProyecto].begin(); i != a.proyectosTareas[nombreProyecto].end(); i++){
 
                 cout << "Nombre de la tarea: " << i->nombreTarea << endl;
-                cout << "Descripcion de la tarea: " << i->descripcion << endl;
                 cout << "Estado de la tarea: " << i->estadoTarea << endl;
                 cout << "Prioridad de la tarea: " << i->prioridadTarea << endl;
                 cout << "Responsable de la tarea: " << i->responsableTarea << endl;
                 cout << "Fecha limite de la tarea: " << i->fechaLimiteTarea << endl;
+                cout << "Resumen de la tarea: " << i->resumenTarea << endl;
 
             }
         }

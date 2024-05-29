@@ -39,18 +39,17 @@ class Creador{
     Proyecto1 pro;
     Tarea1 task;
     set <Proyecto1> proyecGenerales;
-    set <Tarea1> tareasGenerales;
+    vector <string> nombresProyectos;
+    vector <Tarea1> tareasGenerales;
     int color1 [4] = {4,12,14,10};
     vector <string> estado = {"Pendiente", "En Proceso", "Terminada"};
     
-
-    
-
     void crearProyecto(){
 
         cout << "Ingrese el nombre del Proyecto: " << endl;
         cin >> pro.nombreProy;
 
+        nombresProyectos.push_back(pro.nombreProy);
 
         cout << "Ingrese el propietario del Proytecto: " << endl;
         cin >> pro.propietarioProy;
@@ -64,7 +63,7 @@ class Creador{
 
     }
 
-    Tarea1 crearTarea(){
+    void crearTarea(){
 
         cout << "Ingrese el nombre de la Tarea: " << endl;
         cin >> task.nombreTarea;
@@ -81,10 +80,7 @@ class Creador{
         cout << "Ingrese el resumen(comentarios) de la Tarea: " << endl;
         cin >> task.resumenTarea;
 
-        tareasGenerales.insert(task);
-
-
-        return task;
+        tareasGenerales.push_back(task);
 
     }
 
@@ -105,6 +101,14 @@ class Creador{
         task.prioridadTarea = prioridad[opc];
 
     }
+    
+    bool validarVacio(){
+        if(tareasGenerales.empty()){
+            return false;
+        }
+        return true;
+    }
+
 
     string definirEstado(){
 
