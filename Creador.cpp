@@ -13,8 +13,7 @@ void Creador::crearProyecto() {
     pro.estadoProy = definirEstado();
 
     cout << "Ingrese la descripcion del Proyecto: " << endl;
-    cin.ignore();  // Para ignorar el carácter de nueva línea restante
-    getline(cin, pro.descripcionProy);
+    cin >> pro.descripcionProy;
 
     proyecGenerales.insert(pro);
 }
