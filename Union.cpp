@@ -10,14 +10,9 @@ using namespace std;
 
 class Tarea {
 public:
-    set<string> responsables; 
-    string tarea, nombreProyecto;
-    string descripcion;
-    string nombreTarea;
-    string estadoTarea;
-    string prioridadTarea;
-    string responsableTarea;
-    string fechaLimiteTarea; 
+    static map<string, set<string>> proyectosTareas;
+    set<string> responsables;  // set de responsables para cada tarea
+    string nombreProyecto, nombreTarea, descripcion, estadoTarea, prioridadTarea, responsableTarea, fechaLimiteTarea;
 
     Tarea() {
         descripcion = "";
@@ -25,33 +20,33 @@ public:
         estadoTarea = "";
         prioridadTarea = "";
         responsableTarea = "";
-        fechaLimiteTarea = ""; 
+        fechaLimiteTarea = "";
     }
 
     Tarea(string nombreProyecto, string nombreTarea, string estado, string prioridad)
         : nombreProyecto(nombreProyecto), nombreTarea(nombreTarea), estadoTarea(estado), prioridadTarea(prioridad) {}
 
     bool operator<(const Tarea& otra) const {
-    if (prioridadTarea == otra.prioridadTarea) {
-        return nombreTarea > otra.nombreTarea; 
+        if (prioridadTarea == otra.prioridadTarea) {
+            return nombreTarea > otra.nombreTarea;
+        }
+        return prioridadTarea > otra.prioridadTarea;
     }
-    return prioridadTarea > otra.prioridadTarea; 
-}
 
     void pedirDatos();
-    void mostrarEstado(); 
-    void cambiarEstado(); 
+    void mostrarEstado();
+    void cambiarEstado();
     void AsignarTareas();
-    
 };
+
+map<string, set<string>> Tarea::proyectosTareas;
 
 bool ValidacionDeDatos(map<string, Tarea>& tareas){
     int decisionUsuario = 0;
-    string nuevaTarea;
-    string nuevoResponsable;
+    string nuevaTarea, nuevoResponsable;
     int opcion = 0;
 
-    cout << "Ahora podra asignar uno o varios responsables a cada tarea que desee..." << endl;
+    cout << "Ahora podrá asignar uno o varios responsables a cada tarea que desee..." << endl;
 
     while (true) {
         cout << "Ahora por favor digite el numero de la opcion que desea escoger: " << endl;
@@ -85,27 +80,29 @@ bool ValidacionDeDatos(map<string, Tarea>& tareas){
                 // Pregunta si desea agregar más responsables
                 cout << "¿Desea agregar más responsables a la tarea? (1. Sí, 2. No): ";
                 cin >> opcion;
-                cin.ignore(); 
+                cin.ignore();
 
                 if (opcion == 1) {
-                    continue; 
+                    continue;
                 } else {
                     cout << "Felicidades, se han asignado correctamente los responsables a la tarea: " << nuevaTarea << endl;
-                    break; 
+                    break;
                 }
             } else {
-                cout << "La tarea no existe. Por favor, cree una tarea primero." << endl;
+                cout << "La tarea no existePor favor, cree una tarea primero." << endl;
             }
         }
     }
+
+    return true;
 }
 
 void AsignarTareas(string nombreProyecto) {
-    map<string, set<Tarea>> proyectosTareas; 
+    
     cout << "Ahora, podrá agregar las tareas que desee a sus proyectos: " << endl;
     cout << "A continuación escriba el nombre del proyecto: " << endl;
-    cin.ignore(); 
-    getline(cin, nombreProyecto); 
+    cin.ignore();
+    getline(cin, nombreProyecto);
 
     // Crear una nueva tarea y agregarla al proyecto especificado
     Tarea nuevaTarea;
@@ -126,16 +123,16 @@ void AsignarTareas(string nombreProyecto) {
     getline(cin, nuevaTarea.responsableTarea);
     cout <<"Ingrese la fecha limite de la tarea: " << endl;
     cin.ignore();
-    getline(cin, nuevaTarea.fechaLimiteTarea); 
-    
-    // Agregar la tarea al proyecto
-    proyectosTareas[nombreProyecto].insert(nuevaTarea); 
+    getline(cin, nuevaTarea.fechaLimiteTarea);
 
-    // Mostrar las tareas asignadas al proyecto
-    cout << "Las tareas asignadas al proyecto '" << nombreProyecto << "' son:" << endl;
-    for (const auto& tarea : proyectosTareas[nombreProyecto]) {
-        cout << "- " << tarea.nombreTarea << endl;
+    // Agregar la tarea al proyecto
+    if (Tarea::proyectosTareas.find(nombreProyecto) == Tarea::proyectosTareas.end()) {
+        set<string> tareasSet = {nuevaTarea.nombreTarea};
+        Tarea::proyectosTareas[nombreProyecto] = tareasSet;
+    } else {
+        Tarea::proyectosTareas[nombreProyecto].insert(nuevaTarea.nombreTarea);
     }
+
 }
 
 // Mapa para almacenar los estados posibles y sus descripciones
@@ -163,19 +160,22 @@ void Tarea::mostrarEstado() {
 
 void Tarea::cambiarEstado() {
     cout << "Ingrese el nuevo estado para la tarea '" << nombreTarea << "': (pendiente, en-proceso, lista-para-revision)" << endl;
-    cin.ignore(); 
+    cin.ignore();
     getline(cin, estadoTarea);
     cout << "Estado cambiado a: " << estados[estadoTarea] << endl;
 }
 
 void mostrarTareas(const vector<Tarea>& tareas) {
     for (const auto& tarea : tareas) {
-        cout << "Nombre Proyecto: " << tarea.nombreProyecto << ", Nombre Tarea: " << tarea.nombreTarea << ", Prioridad: " << tarea.prioridadTarea << endl;
+        cout << "Nombre Proyecto: " << tarea.nombreProyecto << ", Nombre T" << tarea.nombreTarea << ", Prioridad: " << tarea.prioridadTarea << endl;
     }
 }
-/*int main(){
+
+/*
+int main(){
     int opcion;
     Tarea nuevoProyecto;
+    string nombreProyecto;
 
     while (true) {
         cout << "Seleccione una opción: " << endl;
@@ -183,80 +183,82 @@ void mostrarTareas(const vector<Tarea>& tareas) {
         cout << "2. Si desea asignar tareas a proyectos\n" << endl;
         cout << "3. Si desea cambiar el estado de la tarea. \n" << endl;
         cout << "4. Si desea organizar tareas por prioridad. " << endl;
-        cout << "5. Si desea salir de la aplicacion. " << endl;
+        cout << "5. Si desea salir de la aplicación. " << endl;
         cin >> opcion;
 
         switch(opcion){
-        case 1: 
-        // Asignar responsables a tarea. 
-        map<string, Tarea> tareas; // Crear un mapa para almacenar las tareas y sus responsables
-        bool continuar = true;
-        while (continuar) {
-        continuar = ValidacionDeDatos(tareas);
-        }
-        return 0;
+        case 1:
+            // Asignar responsables a tarea.
+            map<string, Tarea> tareas; // Crear un mapa para almacenar las tareas y sus responsables
+            bool continuar = true;
+            while (continuar) {
+                continuar = ValidacionDeDatos(tareas);
+            }
+            break;
 
         case 2:
-        // Asignar tareas a proyectos.
-        AsignarTareas("PROYECTO:");
-        return 0;
+            // Asignar tareas a proyectos.
+            cout << "Por favor escribe el nombre del proyecto: " << endl;
+            cin >> nombreProyecto;
+            AsignarTareas(nombreProyecto);
+            break;
 
         case 3:
-        // Cambiar el estado de la tarea. 
-        int opcion;
-        Tarea tarea;
-        tarea.pedirDatos();
+            // Cambiar el estado de la tarea.
+            int opcion;
+            Tarea tarea;
+            tarea.pedirDatos();
 
-        tarea.mostrarEstado();
-        cout <<"¿Quieres cambiar el estado de la tarea? 1. SI\n2. NO" << endl;
-        cin >> opcion;
-        if(opcion == 1){
-        tarea.cambiarEstado();
-        }
-        else{
-        cout << "Asignaste correctamente el estado de la tarea. " << endl;
-        }
+            tarea.mostrarEstado();
+            cout <<"¿Quieres cambiar el estado de la tarea? 1. SI2. NO. Answer in spanish. " << endl;
+            cin >> opcion;
+            if(opcion == 1){
+                tarea.cambiarEstado();
+            }
+            else{
+                cout << "Asignaste correctamente el estado de la tarea. " << endl;
+            }
 
-        tarea.mostrarEstado();
-        return 0;
+            tarea.mostrarEstado();
+            break;
 
         case 4:
-        // Organizar tareas por prioridad. 
-        map<string, vector<Tarea>> proyectos;
-        vector<string> tareasPredefinidas = {"Tarea 1", "Tarea 2", "Tarea 3"};
+            // Organizar tareas por prioridad.
+            map<string, vector<Tarea>> proyectos;
+            vector<string> tareasPredefinidas = {"Tarea 1", "Tarea 2", "Tarea 3"};
 
-        string nombreProyecto;
-        cout << "Por favor escribe el nombre del proyecto: " << endl;
-        cin >> nombreProyecto;
+            cout << "Por favor escribe el nombre del proyecto: " << endl;
+            cin >> nombreProyecto;
 
-        proyectos[nombreProyecto] = vector<Tarea>();
+            proyectos[nombreProyecto] = vector<Tarea>();
 
-        for (const auto& tarea : tareasPredefinidas) {
-        Tarea nuevaTarea;
-        nuevaTarea.nombreProyecto = nombreProyecto;
-        nuevaTarea.nombreTarea = tarea;
-        nuevaTarea.estadoTarea = "Pendiente";
-        nuevaTarea.pedirDatos();
-        proyectos[nombreProyecto].push_back(nuevaTarea);
-        }
+            for (const auto& tarea : tareasPredefinidas) {
+                Tarea nuevaTarea;
+                nuevaTarea.nombreProyecto = nombreProyecto;
+                nuevaTarea.nombreTarea = tarea;
+                nuevaTarea.estadoTarea = "Pendiente";
+                nuevaTarea.pedirDatos();
+                proyectos[nombreProyecto].push_back(nuevaTarea);
+            }
 
-        // Ordenar las tareas por prioridad de mayor a menor
-        for (auto& proyecto : proyectos) {
-        sort(proyecto.second.begin(), proyecto.second.end());
-        }
+            // Ordenar las tareas por prioridad de mayor a menor
+            for (auto& proyecto : proyectos) {
+                sort(proyecto.second.begin(), proyecto.second.end());
+            }
 
-        // Mostrar las tareas ordenadas
-        for (const auto& proyecto : proyectos) {
-        cout << "Proyecto: " << proyecto.first << endl;
-        mostrarTareas(proyecto.second);
-        }
-        return 0;
+            // Mostrar las tareas ordenadas
+            for (const auto& proyecto : proyectos) {
+                cout << "Proyecto: " << proyecto.first << endl;
+                mostrarTareas(proyecto.second);
+            }
+            break;
 
         case 5:
-        cout << "Saliendo... " << endl;
-
-        default:
-        cout << "Opción no válida.\n" << endl;
+            cout << "Saliendo... " << endl;
+            return 0;
         }
+    }
+
+    return 0;
 }
-} */
+*/
