@@ -5,16 +5,15 @@
 #include "Creador.h"
 #include "colors.h"
 #include "Login.h"
+#include "Menus.cpp"
 
 using namespace std;
 
 
 int main(){
 
+    Menu m1;
     Login l;
-    Mostrador m;
-    Creador c;
-    Asignador a;
 
     int opcion;
 
@@ -32,18 +31,15 @@ int main(){
                     cout << "1. Crear " << endl << "2. Mostrar" << endl << "3. Asignar" << endl << "4. Salir" << endl;
                     cin >> opcion;
                     if(opcion == 1){
-                        c.crearTarea();
+                        m1.menuCrear();
                     }
                     if(opcion == 2){
-                        a.responsablesTarea();
+                        m1.menuMostrar();
                     }
                     if(opcion == 3){
-                        a.cambiarEstadoTarea();
+                        m1.menuAsignar();
                     }
                     if(opcion == 4){
-                      
-                    }
-                    if(opcion == 5){
                         cout << "Gracias por usar el sistema de gestión de proyectos" << endl;
                         return 0;
                     }

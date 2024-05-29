@@ -115,7 +115,10 @@ class Menu{
             cout << "1. Asignar Tarea a Proyecto" << endl << "2. Asignar Responsable a Tarea" << endl << "3. Cambiar Estado de Tarea" << endl << "4. Salir" << endl;
             cin >> opcion;
             if(opcion == 1){
-                a.asignarTarea();
+                cout << "Ingrese el nombre del proyecto: " << endl;
+                string nombreProyecto;
+                cin >> nombreProyecto;
+                a.asignarTarea(nombreProyecto);
             }
             if(opcion == 2){
                 a.responsablesTarea();
