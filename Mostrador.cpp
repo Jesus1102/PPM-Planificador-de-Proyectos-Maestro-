@@ -3,7 +3,6 @@
 #include <stack>
 #include <map>
 #include <set>
-#include <windows.h>
 #include "Creador.cpp"
 #include "Union.cpp"
 
