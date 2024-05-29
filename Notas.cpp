@@ -73,7 +73,7 @@ public:
         {
             cout << "Ingresa el nombre del proyecto al que deseas reaccionar: " << endl;
             cin >> nombreProyecto;
-            cout << "Ingresa la reaccion que deseas anadir al proyecto:" /*\n1. Entusiasmado.\n2. Confiado.\n3. Tranquilo.\n4. Preocupado.\n5. Estresado.*/ << endl;
+            cout << "Ingresa la reaccion que deseas anadir al proyecto:" << endl;
             cin >> reaccion;
             int size = almacenarNotas.size();
             for (int i = 0; i < size; i++)
