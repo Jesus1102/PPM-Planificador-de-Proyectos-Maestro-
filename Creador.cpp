@@ -29,7 +29,7 @@ void Creador::crearTarea() {
 
     cout << "Ingrese el responsable de la Tarea: " << endl;
     string responsable;
-    cin >> responsable
+    cin >> responsable;
 
     task.responsableTarea.insert(responsable);
 
