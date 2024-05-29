@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include "Notas.cpp"
 #include "Mostrador.h"
 #include "Asignador.h"
 #include "Creador.h"
@@ -12,6 +12,7 @@ class Menu{
     Login l;
     Mostrador m;
     Creador c;
+    Notas n;
     Asignador a;
     int opcion;
     public:
@@ -48,7 +49,7 @@ class Menu{
             }
             if(opcion == 2){
                 l.registrarUsuario();
-                
+
             }
             if(opcion == 3){
                 cout << "Gracias por usar el sistema de gestión de proyectos" << endl;
@@ -61,7 +62,7 @@ class Menu{
     void menuCrear(){
         while (true)
         {
-            cout << "1. Crear Proyecto " << endl << "2. Crear Tarea" << endl << "3. Salir" << endl ;
+            cout << "1. Crear Proyecto " << endl << "2. Crear Tarea" << endl << "3. Crear nota" << endl << "4. Salir" << endl ;
             cin >> opcion;
             if(opcion == 1){
                 c.crearProyecto();
@@ -70,9 +71,11 @@ class Menu{
                 c.crearTarea();
             }
             if(opcion == 3){
+                n.crearNota();
+            }
+            if(opcion == 4){
                 break;
             }
-        
         }
 
     }
@@ -80,7 +83,7 @@ class Menu{
     void menuMostrar(){
         while (true)
         {
-            cout << "1. Mostrar Proyectos con Detalles" << endl << "2. Mostrar Tareas de Proyectos" << endl << "3. Mostrar proyectos disponibles, para ver las tareas" << endl << "4. Mostrar Responsables de Tarea" << endl << "5. Mostrar Tareas por Prioridad" << endl << "6. Salir" << endl;
+            cout << "1. Mostrar Proyectos con Detalles" << endl << "2. Mostrar Tareas de Proyectos" << endl << "3. Mostrar proyectos disponibles, para ver las tareas" << endl << "4. Mostrar Responsables de Tarea" << endl << "5. Mostrar Tareas por Prioridad" << endl << "6. Mostrar notas" << endl << "7. Salir" << endl;
             cin >> opcion;
             if(opcion == 1){
                 m.mostrarProyectos();
@@ -100,7 +103,10 @@ class Menu{
             if(opcion == 5){
                 m.imprimirTareasPorPrioridad();
             }
-            if (opcion == 6)
+            if(opcion == 6){
+                n.mostrarNotas();
+            }
+            if (opcion == 7)
             {
                 break;
             }
@@ -112,7 +118,7 @@ class Menu{
     void menuAsignar(){
         while (true)
         {
-            cout << "1. Asignar Tarea a Proyecto" << endl << "2. Asignar Responsable a Tarea" << endl << "3. Cambiar Estado de Tarea" << endl << "4. Salir" << endl;
+            cout << "1. Asignar Tarea a Proyecto" << endl << "2. Asignar Responsable a Tarea" << endl << "3. Cambiar Estado de Tarea" << endl << "4. Reaccionar a nota" << endl << "5. Salir" << endl;
             cin >> opcion;
             if(opcion == 1){
                 cout << "Ingrese el nombre del proyecto: " << endl;
@@ -127,6 +133,9 @@ class Menu{
                 a.cambiarEstadoTarea();
             }
             if(opcion == 4){
+                n.reaccionarNota();
+            }
+            if(opcion == 5){
                 break;
             }
         

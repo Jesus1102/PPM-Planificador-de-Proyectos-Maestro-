@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include "Notas.h"
 #include "Mostrador.h"
 #include "Asignador.h"
 #include "Creador.h"
@@ -8,7 +8,6 @@
 #include "Menus.cpp"
 
 using namespace std;
-
 
 int main(){
 
