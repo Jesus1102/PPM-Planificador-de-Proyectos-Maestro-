@@ -27,6 +27,47 @@ class Asignador{
 
     }
 
+    void responsablesTarea(){
+        string nombreTareaBusqueda;
+
+        cout << "Ingrese el nombre de la tarea: " << endl;
+        cin >> nombreTareaBusqueda;
+        if(buscarTarea(nombreTareaBusqueda) == true){
+            cout << "Ingrese el nombre del responsable: " << endl;
+            cin >> c.task.responsableTarea;
+        }
+        else{
+            cout << "No existe esta tarea" << endl;
+            cout << "Por favor, cree una tarea" << endl;
+        }
+    }
+
+    void cambiarEstadoTarea(){
+        string nombreTareaBusqueda;
+
+        cout << "Ingrese el nombre de la tarea: " << endl;
+        cin >> nombreTareaBusqueda;
+        if(buscarTarea(nombreTareaBusqueda) == true){
+            cout << "Ingrese el nuevo estado de la tarea: " << endl;
+            cin >> c.task.estadoTarea;
+        }
+        else{
+            cout << "No existe esta tarea" << endl;
+            cout << "Por favor, cree una tarea" << endl;
+        }
+    }
+
+    bool buscarTarea(string tareanombre){
+
+        for (const auto& tarea : c.tareasGenerales) {
+            if (tarea.nombreTarea == tareanombre) {
+                return true;    
+            }
+        }
+        return false;
+
+    }
+
 
 
 };
