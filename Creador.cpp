@@ -43,7 +43,7 @@ void Creador::crearTarea() {
 }
 
 void Creador::prioTarea() {
-    string prioridad[4] = {"Urgente", "Alta", "Media", "Baja"};
+    
     int opc;
     
 

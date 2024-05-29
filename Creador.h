@@ -39,7 +39,7 @@ public:
     set<Proyecto1> proyecGenerales;
     vector<string> nombresProyectos;
     vector<Tarea1> tareasGenerales;
-    int color1[4] = {4, 12, 14, 10};
+    string prioridad[4] = {"Urgente", "Alta", "Media", "Baja"};
     vector<string> estado = {"Pendiente", "En Proceso", "Terminada"};
 
     void crearProyecto();
@@ -49,6 +49,7 @@ public:
     string definirEstado();
     void limiteFecha();
     bool fechaValida(int dia, int mes, int anio);
+
 };
 
 #endif // CREADOR_H

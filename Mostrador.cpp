@@ -1,6 +1,5 @@
 #include <iostream>
-#include <queue>
-#include <stack>
+#include <algorithm>
 #include <map>
 #include <set>
 #include "Creador.h"
@@ -112,10 +111,30 @@ class Mostrador{
             cout << "Por favor, cree una tarea" << endl;
         }
         
-        
-
     }
 
-
-
+    void imprimirTareasPorPrioridad() {
+        
+        if(c.tareasGenerales.empty()){
+            cout << "No hay tareas registradas" << endl;
+            cout << "Por favor, cree una tarea" << endl;
+        }
+        else{
+            cout << "Tareas por prioridad: " << endl;
+            for (int i = 0; i < 4; i++) {
+                cout << c.prioridad[i] << endl;
+                for (const auto& tarea : c.tareasGenerales) {
+                    if (tarea.prioridadTarea == c.prioridad[i]) {
+                        cout << "Nombre de la tarea: " << tarea.nombreTarea << endl;
+                        cout << "Estado de la tarea: " << tarea.estadoTarea << endl;
+                        
+                    }
+                }
+            }
+        }
+   
+    }
 };
+
+
+
