@@ -1,11 +1,7 @@
 #include <iostream>
-#include <queue>
-#include <stack>
+#include <vector>
 #include <map>
 #include <set>
-#include <windows.h>
-
-#define color SetConsoleTextAttribute
 
 using namespace std;
 
@@ -15,6 +11,10 @@ struct Proyecto1{
     string propietarioProy;
     string estadoProy;
     string descripcionProy;
+    // Sobrecargar operador < para usar en set
+    bool operator<(const Proyecto1& other) const {
+        return nombreProy < other.nombreProy;
+    }
 
 };
 
@@ -26,6 +26,10 @@ struct Tarea1{
     string responsableTarea;
     string fechaLimiteTarea;
     string resumenTarea;
+    
+    bool operator<(const Tarea1& other) const {
+        return nombreTarea < other.nombreTarea;
+    }
 
 }; 
 
@@ -61,7 +65,7 @@ class Creador{
 
     }
 
-    void crearTarea(){
+    Tarea1 crearTarea(){
 
         cout << "Ingrese el nombre de la Tarea: " << endl;
         cin >> task.nombreTarea;
@@ -80,18 +84,17 @@ class Creador{
 
         tareasGenerales.insert(task);
 
+
+        return task;
+
     }
 
     void prioTarea(){
-
-        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
         string prioridad [4] = {"Urgente","Alta","Media","Baja"};
         int opc;
 
         for(int i = 0; i < 4; i++){
-
-            color(hConsole, color1[i]);
             cout << to_string(i+1) << prioridad[i] << endl;
 
         }
